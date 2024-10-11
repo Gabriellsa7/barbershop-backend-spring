@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
+import java.util.UUID;
+
 @Entity
 @Table(name = "client")
 @Data
@@ -15,7 +18,7 @@ public class Client {
 
     @Id
     @UuidGenerator
-    private Long id;
+    private UUID id;
 
     private String name;
 
