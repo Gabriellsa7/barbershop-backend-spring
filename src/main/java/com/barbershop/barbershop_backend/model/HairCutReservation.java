@@ -27,7 +27,7 @@ public class HairCutReservation {
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @Column(name = "img_url", nullable = true) //Allows field to be null if needed
+    @Column(name = "img_url") //Allows field to be null if needed
     private String imgUrl;
 
     @ManyToOne
