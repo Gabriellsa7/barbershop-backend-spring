@@ -24,6 +24,6 @@ public class ClientAuthentication {
     private String token;
 
     @OneToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "client_id", nullable = false, referencedColumnName = "id")
     private Client client;
 }
