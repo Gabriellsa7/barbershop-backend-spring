@@ -29,7 +29,7 @@ public class ClientRepository implements IClientRepository {
     @Override
     public List<Client> getClients() {
         // Running a JPQL query to select all clients from the User table (Client entity)
-        return entityManager.createQuery("SELECT u FROM User u", Client.class).getResultList();
+        return entityManager.createQuery("SELECT u FROM client u", Client.class).getResultList();
     }
 
     // Method to get a client by their ID
