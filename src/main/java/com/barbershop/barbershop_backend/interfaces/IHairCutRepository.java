@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IHairCutRepository {
     HairCut createHairCut(HairCut hairCut);
 
-    List<HairCut> getHairCut();
+    List<HairCut> getHairCuts();
 
     Optional<HairCut> getHairCutById(String id);
 
