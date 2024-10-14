@@ -44,6 +44,7 @@ public class BarberShopRepository implements IBarberShopRepository {
                 barberShop.setRating(updateBarberShop.getRating());
                 barberShop.setClosingTime(updateBarberShop.getClosingTime());
                 barberShop.setOpening_time(updateBarberShop.getOpening_time());
+                entityManager.merge(barberShop);
             }
         return  barberShop;
     }
