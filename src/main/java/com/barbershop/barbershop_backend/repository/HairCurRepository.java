@@ -50,7 +50,6 @@ public class HairCurRepository implements IHairCutRepository {
             hairCut.setBarberShop(updateHairCut.getBarberShop());
             hairCut.setHairService(updateHairCut.getHairService());
             entityManager.merge(hairCut);
-            entityManager.merge(hairCut);
          }
 
          return hairCut;
