@@ -5,10 +5,12 @@ import com.barbershop.barbershop_backend.model.Client;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @Transactional
@@ -27,14 +29,15 @@ public class ClientRepository implements IClientRepository {
 
     // Method to retrieve all clients from the database
     @Override
+    @Query("SELECT c FROM Client c")
     public List<Client> getClients() {
         // Running a JPQL query to select all clients from the User table (Client entity)
-        return entityManager.createQuery("SELECT u FROM client u", Client.class).getResultList();
+        return entityManager.createQuery("SELECT c FROM Client c", Client.class).getResultList();
     }
 
     // Method to get a client by their ID
     @Override
-    public Optional<Client> getClientById(String id) {
+    public Optional<Client> getClientById(UUID id) {
         // Find the client by primary key (ID) in the database
         Client client = entityManager.find(Client.class, id);
         // Return an Optional containing the client if found, or empty if not found
@@ -43,7 +46,7 @@ public class ClientRepository implements IClientRepository {
 
     // Method to update a client with new information
     @Override
-    public Client updateClient(String id, Client updatedClient) {
+    public Client updateClient(UUID id, Client updatedClient) {
         // Find the client by ID in the database
         Client client = entityManager.find(Client.class, id);
         if (client != null) {
@@ -58,7 +61,7 @@ public class ClientRepository implements IClientRepository {
 
     // Method to delete a client by their ID
     @Override
-    public void deleteClient(String id) {
+    public void deleteClient(UUID id) {
         // Find the client by ID
         Client client = entityManager.find(Client.class, id);
         if (client != null) {
