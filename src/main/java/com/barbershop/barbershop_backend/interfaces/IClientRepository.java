@@ -15,11 +15,11 @@ public interface IClientRepository {
     List<Client> getClients();
 
     //Method to get a client by ID, returns an Optional<Client> because the client might not be found
-    Optional<Client> getClientById(String id);
+    Optional<Client> getClientById(UUID id);
 
     //Update the client's information
-    Client updateClient(String id, Client updatedClient);
+    Client updateClient(UUID id, Client updatedClient);
 
     //Delete client by id
-    void deleteClient(String id);
+    void deleteClient(UUID id);
 }
