@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Payment {
 
     @Id
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "value", nullable = false)
@@ -35,6 +35,6 @@ public class Payment {
     private Client client;
 
     @OneToOne
-    @JoinColumn(name = "haircut_reservation_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "reservation_id", nullable = false, referencedColumnName = "id")
     private  HairCutReservation hairCutReservation;
 }
