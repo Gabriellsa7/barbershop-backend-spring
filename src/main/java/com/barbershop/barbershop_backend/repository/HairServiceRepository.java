@@ -7,11 +7,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Entity
+@Repository
 @Transactional
 public class HairServiceRepository  implements IHairServiceRepository {
     @PersistenceContext
@@ -22,7 +23,7 @@ public class HairServiceRepository  implements IHairServiceRepository {
     public HairService createService(HairService hairService) {
         entityManager.persist(hairService);
 
-        if(hairService.getName() != null || hairService.getBarberShop() != null || hairService.getHairCut() != null || hairService.getHairCutReservation() != null) {
+        if(hairService.getName() != null || hairService.getBarberShop() != null || hairService.getHairCuts() != null || hairService.getHairCutReservation() != null) {
             return hairService;
         }
         return null;
@@ -50,7 +51,7 @@ public class HairServiceRepository  implements IHairServiceRepository {
             hairService.setBarberShop(updateService.getBarberShop());
             hairService.setDuration(updateService.getDuration());
             hairService.setHairCutReservation(updateService.getHairCutReservation());
-            hairService.setHairCut(updateService.getHairCut());
+            hairService.setHairCuts(updateService.getHairCuts());
             hairService.setPrice(updateService.getPrice());
         }
 
