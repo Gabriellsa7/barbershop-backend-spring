@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Client {
 
     @Id
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "name", nullable = false)
