@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,7 +18,7 @@ import java.util.UUID;
 public class HairService {
 
     @Id
-    @UuidGenerator
+    @GeneratedValue(generator = "UUID")
     private UUID id;
 
     @Column(name = "name", nullable = false)
@@ -35,12 +37,10 @@ public class HairService {
     @JoinColumn(name = "barbershop_id", referencedColumnName = "id")
     private BarberShop barberShop;
 
-    @OneToOne(mappedBy = "hair_service", cascade = CascadeType.ALL, orphanRemoval = true)
-    private HairCutReservation hairCutReservation;
+    @OneToMany(mappedBy = "hairService")
+    private List<HairCutReservation> hairCutReservation;
 
-    @OneToOne(mappedBy = "hair_service", cascade = CascadeType.ALL, orphanRemoval = true)
-    private HairCut hairCut;
-
-
+    @OneToMany(mappedBy = "hairService")
+    private List<HairCut> hairCuts;
 
 }
