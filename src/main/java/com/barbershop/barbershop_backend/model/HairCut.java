@@ -16,7 +16,7 @@ import java.util.UUID;
 public class HairCut {
 
     @Id
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "name", nullable = false)
@@ -32,7 +32,7 @@ public class HairCut {
     @JoinColumn(name = "barbershop_id", referencedColumnName = "id")
     private BarberShop barberShop;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "hair_service_id", referencedColumnName = "id")
     private HairService hairService;
 }
