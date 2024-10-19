@@ -17,7 +17,7 @@ import java.util.UUID;
 public class HairCutReservation {
 
     @Id
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "date_time", nullable = false)
@@ -39,9 +39,9 @@ public class HairCutReservation {
     private BarberShop barberShop;
 
     @ManyToOne
-    @JoinColumn(name = "service_id", referencedColumnName = "id")
-    private HairService service;
+    @JoinColumn(name = "hair_service_id", referencedColumnName = "id")
+    private HairService hairService;
 
-    @OneToOne(mappedBy = "haircut_reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "hairCutReservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private Payment payment;
 }
