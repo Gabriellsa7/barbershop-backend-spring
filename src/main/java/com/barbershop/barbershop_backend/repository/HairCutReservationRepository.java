@@ -46,7 +46,7 @@ public class HairCutReservationRepository implements IHairCutReservationReposito
             reservation.setImgUrl(updateReservation.getImgUrl());
             reservation.setClient(updateReservation.getClient());
             reservation.setBarberShop(updateReservation.getBarberShop());
-            reservation.setService(updateReservation.getService());
+            reservation.setHairService(updateReservation.getHairService());
             entityManager.merge(reservation);
         }
         return reservation;
