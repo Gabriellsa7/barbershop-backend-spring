@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ClientAuthentication {
 
     @Id
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String token;
