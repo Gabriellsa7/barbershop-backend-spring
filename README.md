@@ -46,3 +46,4 @@ This project is the backend service for a barbershop application. It provides AP
    ```bash
    git clone https://github.com/yourusername/barbershop-backend.git
    cd barbershop-backend
+ 
