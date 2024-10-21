@@ -4,6 +4,7 @@ import com.barbershop.barbershop_backend.model.BarberShop;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface IBarberShopRepository {
 
@@ -11,9 +12,9 @@ public interface IBarberShopRepository {
 
     List<BarberShop> getBarberShops();
 
-    Optional<BarberShop> getBarberShopById(String id);
+    Optional<BarberShop> getBarberShopById(UUID id);
 
-    BarberShop updateBarberShop(String id, BarberShop updateBarberShop);
+    BarberShop updateBarberShop(UUID id, BarberShop updateBarberShop);
 
-    void deleteBarberShop(String id);
+    void deleteBarberShop(UUID id);
 }
