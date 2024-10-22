@@ -33,10 +33,10 @@ public class BarberShop {
     private Float rating;
 
     @Column(name = "opening_time")
-    private LocalTime opening_time;
+    private String opening_time;
 
     @Column(name = "closingTime")
-    private LocalTime closingTime;
+    private String closingTime;
 
     @Column(name = "img_url")
     private String imgUrl;
