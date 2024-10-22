@@ -5,10 +5,12 @@ import com.barbershop.barbershop_backend.model.BarberShop;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @Transactional
@@ -24,18 +26,19 @@ public class BarberShopRepository implements IBarberShopRepository {
     }
 
     @Override
+    @Query("SELECT c FROM BarberShop c")
     public List<BarberShop> getBarberShops() {
-        return entityManager.createQuery("SELECT u FROM barberShop", BarberShop.class).getResultList();
+        return entityManager.createQuery("SELECT c FROM BarberShop c", BarberShop.class).getResultList();
     }
 
     @Override
-    public Optional<BarberShop> getBarberShopById(String id) {
+    public Optional<BarberShop> getBarberShopById(UUID id) {
         BarberShop barberShop = entityManager.find(BarberShop.class, id);
         return Optional.ofNullable(barberShop);
     }
 
     @Override
-    public  BarberShop updateBarberShop(String id, BarberShop updateBarberShop) {
+    public  BarberShop updateBarberShop(UUID id, BarberShop updateBarberShop) {
         BarberShop barberShop = entityManager.find(BarberShop.class, id);
             if (barberShop != null) {
                 barberShop.setName(updateBarberShop.getName());
@@ -50,7 +53,7 @@ public class BarberShopRepository implements IBarberShopRepository {
     }
 
     @Override
-    public void deleteBarberShop(String id) {
+    public void deleteBarberShop(UUID id) {
         BarberShop barberShop = entityManager.find(BarberShop.class, id);
         if(barberShop != null) {
             entityManager.remove(barberShop);
