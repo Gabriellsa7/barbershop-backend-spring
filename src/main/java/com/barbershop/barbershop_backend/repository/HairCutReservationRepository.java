@@ -5,10 +5,12 @@ import com.barbershop.barbershop_backend.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @Transactional
@@ -20,24 +22,23 @@ public class HairCutReservationRepository implements IHairCutReservationReposito
     @Override
     public HairCutReservation createReservation(HairCutReservation reservation) {
         entityManager.persist(reservation);
-
         return reservation;
     }
 
     @Override
+    @Query("SELECT c FROM HairCutReservation c")
     public List<HairCutReservation> getReservations() {
-        return  entityManager.createQuery("SELECT u FROM client u", HairCutReservation.class).getResultList();
+        return  entityManager.createQuery("SELECT c FROM HairCutReservation c", HairCutReservation.class).getResultList();
     }
 
     @Override
-    public Optional<HairCutReservation> getReservationById(String id) {
+    public Optional<HairCutReservation> getReservationById(UUID id) {
         HairCutReservation reservation = entityManager.find(HairCutReservation.class, id);
-
         return Optional.ofNullable(reservation);
     }
 
     @Override
-    public HairCutReservation updateReservation(String id, HairCutReservation updateReservation) {
+    public HairCutReservation updateReservation(UUID id, HairCutReservation updateReservation) {
         HairCutReservation reservation = entityManager.find(HairCutReservation.class, id);
 
         if(reservation != null) {
@@ -53,7 +54,7 @@ public class HairCutReservationRepository implements IHairCutReservationReposito
     }
 
     @Override
-    public void deleteReservation(String id) {
+    public void deleteReservation(UUID id) {
         HairCutReservation reservation = entityManager.find(HairCutReservation.class, id);
 
         if (reservation != null) {
@@ -62,17 +63,17 @@ public class HairCutReservationRepository implements IHairCutReservationReposito
     }
 
     @Override
-    public Optional<BarberShop> getBarberShopId(String barberShop_id) {
+    public Optional<BarberShop> getBarberShopId(UUID barberShop_id) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<HairService> getHairServiceId(String hairService_id) {
+    public Optional<HairService> getHairServiceId(UUID hairService_id) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Client> getClientId(String client_id) {
+    public Optional<Client> getClientId(UUID client_id) {
         return Optional.empty();
     }
 }
