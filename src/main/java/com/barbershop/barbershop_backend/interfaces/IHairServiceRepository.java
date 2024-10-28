@@ -4,6 +4,7 @@ import com.barbershop.barbershop_backend.model.HairService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface IHairServiceRepository {
 
@@ -11,9 +12,9 @@ public interface IHairServiceRepository {
 
     List<HairService> getServices();
 
-    Optional<HairService> getServiceById(String id);
+    Optional<HairService> getServiceById(UUID id);
 
-    HairService updateService(String id, HairService updateService);
+    HairService updateService(UUID id, HairService updateService);
 
-    void deleteService(String id);
+    void deleteService(UUID id);
 }
