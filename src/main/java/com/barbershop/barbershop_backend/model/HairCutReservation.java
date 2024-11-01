@@ -31,7 +31,7 @@ public class HairCutReservation {
     private String imgUrl;
 
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 
     @ManyToOne
