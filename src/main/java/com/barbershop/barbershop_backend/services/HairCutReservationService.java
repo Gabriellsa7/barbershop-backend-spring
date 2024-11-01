@@ -2,7 +2,9 @@ package com.barbershop.barbershop_backend.services;
 
 import com.barbershop.barbershop_backend.interfaces.IHairCutReservationRepository;
 import com.barbershop.barbershop_backend.interfaces.IHairCutReservationRepository;
+import com.barbershop.barbershop_backend.model.Client;
 import com.barbershop.barbershop_backend.model.HairCutReservation;
+import com.barbershop.barbershop_backend.repository.HairCutReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,12 @@ import java.util.UUID;
 public class HairCutReservationService {
     @Autowired // Injects the IHairCutReservationRepository dependency to handle database operations
     private IHairCutReservationRepository hairCutReservationRepository;
+    private ClientService clientService;
+
+    public HairCutReservationService(ClientService clientService, HairCutReservationRepository reservationRepository) {
+        this.clientService = clientService;
+        this.hairCutReservationRepository = reservationRepository;
+    }
 
     // Method to retrieve all HairCutReservations from the repository (database)
     public List<HairCutReservation> getAllHairCutReservations() {
