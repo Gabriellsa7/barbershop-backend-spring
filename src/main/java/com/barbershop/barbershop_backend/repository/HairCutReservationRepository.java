@@ -4,10 +4,12 @@ import com.barbershop.barbershop_backend.interfaces.IHairCutReservationRepositor
 import com.barbershop.barbershop_backend.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Status;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,8 +21,14 @@ public class HairCutReservationRepository implements IHairCutReservationReposito
     @PersistenceContext
     private EntityManager entityManager;
 
+
     @Override
     public HairCutReservation createReservation(HairCutReservation reservation) {
+        reservation.setDateTime(LocalDateTime.now());
+        // Certifique-se de que o client não é nulo antes de persistir
+        if (reservation.getClient() == null) {
+            throw new IllegalArgumentException("Client cannot be null");
+        }
         entityManager.persist(reservation);
         return reservation;
     }
