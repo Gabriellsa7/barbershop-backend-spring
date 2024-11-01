@@ -32,8 +32,8 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HairCutReservation> reservations;
+    @OneToMany(mappedBy = "client")
+    private List<HairCutReservation> hairCutReservations;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Payment> payments;
