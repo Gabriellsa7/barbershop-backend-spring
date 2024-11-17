@@ -69,4 +69,11 @@ public class ClientRepository implements IClientRepository {
             entityManager.remove(client);
         }
     }
+
+    public Optional<Client> findByEmail(String email) {
+        return entityManager.createQuery("SELECT c FROM Client c WHERE c.email = :email", Client.class)
+                .setParameter("email", email)
+                .getResultStream()
+                .findFirst();
+    }
 }
