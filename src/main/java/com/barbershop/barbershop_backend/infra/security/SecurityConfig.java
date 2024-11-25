@@ -16,6 +16,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/clients", "/auth/login").permitAll() // Permite acesso público ao cadastro e login
                         .anyRequest().authenticated() // Exige autenticação para outros endpoints
+
                 );
         return http.build();
     }

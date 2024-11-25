@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@CrossOrigin(origins = "http://10.0.2.2:9090")
 @RestController // Marks this class as a Spring MVC controller where every method returns a JSON or XML response
 @RequestMapping("/clients") // Defines the base URL path for all client-related endpoints
 public class ClientController {

@@ -42,7 +42,7 @@ public class ClientService {
     }
 
     public Optional<Client> getClientByEmail(String email) {
-        return clientRepository.findByEmail(email);
+        return clientRepository.findByEmail(email.trim());
     }
 }
 

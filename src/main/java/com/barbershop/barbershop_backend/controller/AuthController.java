@@ -28,7 +28,7 @@ public class AuthController {
             // Verifica se a senha do banco coincide com a senha fornecida
             if (client.getPassword().equals(loginRequest.getPassword())) {
                 String token = jwtUtil.generateToken(client.getEmail());
-                return ResponseEntity.ok(token);
+                return ResponseEntity.ok(token); // Retorna o token JWT
             } else {
                 return ResponseEntity.status(401).body("Invalid password");
             }

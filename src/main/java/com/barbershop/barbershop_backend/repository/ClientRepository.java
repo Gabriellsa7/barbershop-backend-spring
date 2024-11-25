@@ -71,7 +71,8 @@ public class ClientRepository implements IClientRepository {
     }
 
     public Optional<Client> findByEmail(String email) {
-        return entityManager.createQuery("SELECT c FROM Client c WHERE c.email = :email", Client.class)
+        return entityManager.createQuery(
+                        "SELECT c FROM Client c WHERE LOWER(c.email) = LOWER(:email)", Client.class)
                 .setParameter("email", email)
                 .getResultStream()
                 .findFirst();
